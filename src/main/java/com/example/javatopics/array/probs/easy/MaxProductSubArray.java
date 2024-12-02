@@ -27,21 +27,17 @@ public class MaxProductSubArray {
     }
 
     private static int maxProductApproach2 (int[] arr) {
-        int curr_max= arr[0];
-        int curr_min = arr[0];
-        int maxProd = arr[0];
+       int maxProd = arr[0];
+       int currMax = arr[0];
+       int currMin = arr[0];
 
-        int start=0,end=0;
-
-        for(int i=1;i<arr.length;i++){
-
-           int temp = Math.max(arr[i]*1,Math.max(arr[i]*curr_max,arr[i]*curr_min));
-           curr_min = Math.min(arr[i]*1,Math.min(arr[i]*curr_max,arr[i]*curr_min));
-           curr_max=temp;
-           maxProd= Math.max(curr_max,maxProd);
-        }
-        System.out.println("i is " + end + " start " + start);
-        return maxProd;
+       for(int i=1;i< arr.length;i++){
+           int temp = Math.max(arr[i]*1, Math.max(currMax*arr[i],currMin*arr[i]));
+           currMin = Math.min(arr[i]*1,Math.min(currMax*arr[i],currMin*arr[i]));
+           currMax =temp;
+           maxProd = Math.max(currMax,maxProd);
+       }
+       return maxProd;
     }
 
     public static void main (String[] args) {

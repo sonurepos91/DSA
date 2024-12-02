@@ -23,9 +23,12 @@ import static com.example.javatopics.tree.LevelOrderTraversal.insertNewNode;
 * Top View Of Tree
 * Left View Of Tree
 * Right View Of Tree
+* Diameter Of Tree
+* Deletion of Given Node In BST
 * Search Element In BST
 * GreaterSumTree
 * LowerSumTree
+*
 * */
 public class LeafNodes {
     private static int totalNodes;
@@ -82,8 +85,7 @@ public class LeafNodes {
             return 0;
         if(root.left!=null && root.right!=null){
             return 1 + nodesWithTwoChild(root.left) + nodesWithTwoChild(root.right);
-        }else
-            return nodesWithTwoChild(root.left) + nodesWithTwoChild(root.right);
+        }return nodesWithTwoChild(root.left) + nodesWithTwoChild(root.right);
     }
     private static int nodesCount(Node root){
         if(root!=null){
@@ -96,8 +98,6 @@ public class LeafNodes {
     private static int nodesCountApproach2 (Node root) {
         if(root ==null)
             return 0;
-
-
         return nodesCountApproach2(root.left) + nodesCountApproach2(root.right) + 1;
     }
     private static int printLargestNode (Node root) {
@@ -148,7 +148,7 @@ public class LeafNodes {
 
         Node root = null;
 
-       /* root = insertNewNode(root,50);
+      /* root = insertNewNode(root,50);
         root = insertNewNode(root,40);
         root = insertNewNode(root,30);
         root = insertNewNode(root,20);

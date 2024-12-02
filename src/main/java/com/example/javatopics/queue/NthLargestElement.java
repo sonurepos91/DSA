@@ -20,44 +20,39 @@ public class NthLargestElement {
     Element having Highest value has largest priority */
 
     private static void NthLargest (int[] a, int k){
-        //Max Heap
-        PriorityQueue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder());
+        //Min Heap
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
         int temp= 0;
 
-        for(int i=0;i< a.length;i++){
+        for (int i = 0; i < a.length; i++) {
             queue.add(a[i]);
+            if (queue.size() > k) {
+                queue.remove();
+            }
         }
-        while(k>0){
-            temp=queue.poll();
-            k--;
-        }
-        System.out.println(temp);
+        System.out.println(queue.peek());
     }
 
     private static void NthSmallest (int[] a, int k) {
 
-        // Create a Min Heap
-        PriorityQueue<Integer> queue = new PriorityQueue<>();
+        // Create a Max Heap
+        PriorityQueue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder());
 
-        for(int i=0;i<a.length;i++){
+        for(int i=0;i<a.length;i++) {
             queue.add(a[i]);
+
+            if (queue.size() > k) {
+                queue.remove();
+            }
         }
-        int temp =0;
-        while(k>0){
-            temp = queue.poll();
-            k--;
-        }
-        System.out.println();
-        System.out.println(temp + " ");
+        System.out.println(queue.peek() + " ");
     }
 
     public static void main(String[] args)
     {
-        int a[] = { 11, 3, 2, 1, 15, 5, 4, 45, 88, 96, 50, 45 };
-        int k = 3;
+        int a[] = { 5, 20, 10, 7, 1  };
+        int k = 2;
         NthLargest(a,k);
         NthSmallest(a,k);
     }
-
-
 }

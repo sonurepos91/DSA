@@ -14,18 +14,17 @@ public class MedianOfTwoSortedArrays {
 
     private static int medianOf2 (int[] arr1, int[] arr2) {
 
-        int[] arr3 = new int[arr1.length+arr2.length];
+        int arr3[] = new int[arr1.length+arr2.length];
+
         System.arraycopy(arr1,0,arr3,0,arr1.length);
         System.arraycopy(arr2,0,arr3,arr1.length,arr2.length);
 
-
         Arrays.sort(arr3);
 
-        if(arr3.length%2==0){
+        if(arr3.length% 2== 0){
             return (arr3[arr3.length/2] + arr3[arr3.length/2 +1])/2;
         }else
-            return (arr3[arr3.length/2]);
-
+            return arr3[arr3.length/2];
     }
 
 

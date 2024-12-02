@@ -1,8 +1,5 @@
 package com.example.javatopics.tree;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 public class BinaryTreeImpl {
 
     private static Node insertNode (Node root, int element) {
@@ -32,7 +29,7 @@ public class BinaryTreeImpl {
             System.out.print(root.data + " ");
         }
     }
-    static void inOrderTraversal (Node root) {
+    public static void inOrderTraversal (Node root) {
         if(root!=null){
             inOrderTraversal(root.left);
             System.out.print(root.data + " ");

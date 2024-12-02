@@ -1,5 +1,7 @@
 package com.example.javatopics.substring;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -13,6 +15,7 @@ public class CheckIfGivenStringCanBeRepresentedByItsSubString {
         for(int i=0;i<str.length();i++){
             map.put(str.charAt(i),map.get(str.charAt(i))!=null?map.get(str.charAt(i))+1 : 1);
         }
+
 
         int value = map.get(str.charAt(0));
         AtomicBoolean isValid = new AtomicBoolean(true);

@@ -2,6 +2,8 @@ package com.example.javatopics.tree;
 
 import java.util.*;
 
+import static com.example.javatopics.tree.BinaryTreeImpl.inOrderTraversal;
+
 public class ViewOfTree {
 
     private static void topViewOfTree (Node root) {
@@ -77,15 +79,74 @@ public class ViewOfTree {
         rightViewMap.forEach((k,v)-> System.out.print(v.data + " "));
     }
 
+    private static int diameterOfTree (Node root) {
+        if(root==null)
+            return 0;
+        // Compute the longest Path that goes through left and right subtree through root
+        int l = heightOfTree(root.left);
+        int r = heightOfTree(root.right);
+
+        int lD = diameterOfTree(root.left);
+        int rD = diameterOfTree(root.right);
+
+        return Math.max(l+r+1,Math.max(lD,rD));
+
+    }
+
+    private static int heightOfTree (Node root) {
+        if(root == null)
+            return 0;
+        return Math.max(heightOfTree(root.left),heightOfTree(root.right)) +1;
+    }
+
+    private static Node deleteGivenNode (Node root, int element) {
+        if(root == null)
+            return null;
+        if(element< root.data)
+            root.left=deleteGivenNode(root.left,element);
+        else if(element>root.data){
+            root.right=deleteGivenNode(root.right,element);
+        }else{
+            if(root.left==null && root.right==null){
+                return null;
+            }
+            if(root.right!=null && root.left==null ){
+                Node temp = root.right;
+                return temp;
+            }
+            if(root.left!=null && root.right==null ){
+                Node temp = root.left;
+                return temp;
+            }
+            if(root.left!=null && root.right!=null){
+                // Get the smallest node after Moving One Node To the Right ::
+                Node temp = getLowestNodeFromOneRightNode(root);
+                root.data= temp.data;
+                root.right= deleteGivenNode(root.right,temp.data);
+            }
+        }
+        return root;
+    }
+
+    private static Node getLowestNodeFromOneRightNode (Node root) {
+        Node temp = root.right;
+        while(temp!=null && temp.left!=null){
+            temp=temp.left;
+        }
+        return temp;
+    }
+
+
     public static void main(String[] args) {
 
-        Node root = new Node(1);
-        root.left = new Node(2);
-        root.right = new Node(3);
+        Node root = new Node(10);
+        root.left = new Node(5);
+        root.right = new Node(15);
+        root.right.right= new Node(20);
         root.left.left = new Node(4);
-
-
-
+        root.left.right = new Node(9);
+        root.left.right.left = new Node(7);
+        root.left.right.left.left = new Node(6);
 
         System.out.println("Top View Of Tree ");
         topViewOfTree(root);
@@ -95,5 +156,19 @@ public class ViewOfTree {
         System.out.println();
         System.out.println("Right View Of Tree ");
         rightViewOfTree(root);
+        System.out.println();
+        System.out.println("Diameter Of Tree : ");
+        System.out.println(diameterOfTree(root));
+        System.out.println();
+        System.out.println("Deletion In Binary Tree :");
+        if(deleteGivenNode(root,5)!= null){
+            System.out.println();
+            System.out.println("InOrder Traversal : ");
+            inOrderTraversal(root);
+        }else{
+            System.out.println("Node with Data : " + 20 + " does not exist :");
+        }
+
     }
+
 }

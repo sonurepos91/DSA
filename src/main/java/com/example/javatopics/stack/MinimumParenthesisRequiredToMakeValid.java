@@ -24,15 +24,17 @@ public class MinimumParenthesisRequiredToMakeValid<T> {
             }else{
                 if(!stack.isEmpty()){
                     if(T.charAt(i)== ']' && stack.peek() =='[' || T.charAt(i)== '}' && stack.peek() =='{' || T.charAt(i)== ')' && stack.peek() =='('){
-                        longestString.append(stack.peek());
-                        longestString.append(T.charAt(i));
+                       // longestString.append(stack.peek());
+                        //longestString.append(T.charAt(i));
                         stack.pop();
+                    }else{
+                        stack.push(T.charAt(i));
                     }
                 }else{
                     stack.push(T.charAt(i));
                 }
             }
         }
-        return (T) String.valueOf(longestString);
+        return (T) String.valueOf(stack.size());
     }
 }

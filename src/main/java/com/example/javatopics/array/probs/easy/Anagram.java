@@ -5,27 +5,25 @@ import java.util.*;
 public class Anagram {
 
     private static void findAllAnagrams (String[] arr) {
-
-        Map<String, Set<String>> map = new HashMap<>();
+        Map<String,Set<String>> map = new HashMap<>();
         for(int i=0;i< arr.length;i++){
-            char ch[] = arr[i].toLowerCase().toCharArray();
+            String str = arr[i];
             Set<String> set = new HashSet<>();
-            for(int j=i+1;j< arr.length;j++){
-               char ch1[] = arr[j].toLowerCase().toCharArray();
-               if(ch.length!=ch1.length)
-                   continue;
-               else{
-                   Arrays.sort(ch);
-                   Arrays.sort(ch1);
-                   if(Arrays.equals(ch,ch1)){
+            for(int j=i+1;j<arr.length;j++){
+                if(str.length() == arr[j].length()){
+                    char[] arr1= arr[j].toLowerCase().toCharArray();
+                    char[] arr2= str.toLowerCase().toCharArray();
+                    Arrays.sort(arr1);
+                    Arrays.sort(arr2);
+                    if(Arrays.equals(arr1,arr2)){
                         set.add(arr[i]);
                         set.add(arr[j]);
-                        map.put(arr[i],set);
-                   }
-               }
+                        map.put(str,set);
+                    }
+                }
             }
         }
-        map.forEach((k,v)-> System.out.println(v) );
+        map.forEach((k,v)-> System.out.println( k + " : " + v));
     }
 
     private static boolean checkAnagram (String str1, String str2) {

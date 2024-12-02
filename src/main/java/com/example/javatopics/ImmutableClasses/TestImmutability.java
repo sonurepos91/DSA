@@ -23,7 +23,7 @@ public class TestImmutability {
         // This also violates Immutability : So , should perform Clone on Address class
         employee.getAddress().setCity("Bengalore");
         // String Classes are already Immutable
-        //employee.getPhoneNumbers().add("90890");
+        employee.getPhoneNumbers().add("90890");
 
         System.out.println(employee);
         System.out.println("::::::::::::::::::Record in JAVA 14 ::::::::::::::;;");

@@ -1,5 +1,6 @@
 package com.example.javatopics.ImmutableClasses;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +29,7 @@ public final class Employee {
     }
 
     public List<String> getPhoneNumbers () {
-        return phoneNumbers;
+        return new ArrayList<>(phoneNumbers);
     }
 
     //Deep Copy

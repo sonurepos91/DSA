@@ -8,14 +8,13 @@ import java.util.stream.Stream;
 public class MajorityElementInSortedArray {
 
     private static int majorityElementInSortedArray (int[] arr) {
-        Map<Integer,Integer> map1 = new HashMap<>();
+       Map<Integer,Integer> map = new HashMap<>();
+       for(int i=0;i< arr.length;i++){
+           map.put(arr[i],map.get(arr[i])!=null?map.get(arr[i])+1:1);
+       }
 
-        for(int i=0;i<arr.length;i++){
-            map1.put(arr[i],map1.get(arr[i])!=null?map1.get(arr[i])+1:1);
-        };
-
-        Stream<Map.Entry<Integer, Integer>> limit = map1.entrySet().stream().sorted(Map.Entry.comparingByValue(Collections.reverseOrder())).limit(1);
-        limit.forEach((k)-> System.out.println(k.getKey()));
+        Stream<Map.Entry<Integer, Integer>> limit = map.entrySet().stream().sorted(Map.Entry.comparingByValue(Collections.reverseOrder())).limit(1);
+        limit.forEach(k-> System.out.println(k.getKey()));
         return -1;
     }
 
